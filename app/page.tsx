@@ -4,6 +4,9 @@ import { MainContent } from "@/components/main-content"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { getPersonalInfo } from "@/lib/sanity.queries"
 
+// Revalidate every hour
+export const revalidate = 3600
+
 export default async function Home() {
   const personalInfo = await getPersonalInfo()
 

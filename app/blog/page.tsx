@@ -5,6 +5,9 @@ import { BlogSubscribe } from "@/components/blog-subscribe"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 
+// Revalidate every hour
+export const revalidate = 3600
+
 export const metadata = {
   title: "Blog - Developer Portfolio",
   description: "Read the latest blog posts about web development, programming, and technology.",
