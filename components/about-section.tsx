@@ -1,13 +1,21 @@
-import { getAbout } from "@/lib/sanity.queries"
 import { PortableText } from "@/components/portable-text"
 
 interface TechnologyCategory {
-  category: string;
-  items: string[];
+  category: string
+  items: string[]
 }
 
-export async function AboutSection() {
-  const data = await getAbout()
+interface AboutData {
+  bio: any
+  skills?: string[]
+  technologies?: TechnologyCategory[]
+}
+
+interface AboutSectionProps {
+  data: AboutData | null
+}
+
+export function AboutSection({ data }: AboutSectionProps) {
 
   if (!data) {
     return (

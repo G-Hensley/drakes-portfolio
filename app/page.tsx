@@ -2,13 +2,31 @@ import { Suspense } from "react"
 import { ProfileSidebar } from "@/components/profile-sidebar"
 import { MainContent } from "@/components/main-content"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { getPersonalInfo } from "@/lib/sanity.queries"
+import {
+  getPersonalInfo,
+  getAbout,
+  getResume,
+  getCertifications,
+  getProjects,
+  getBlogPosts,
+  getBlogTags,
+} from "@/lib/sanity.queries"
 
 // Revalidate every hour
 export const revalidate = 3600
 
 export default async function Home() {
-  const personalInfo = await getPersonalInfo()
+  const [personalInfo, aboutData, resumeData, certifications, projects, labs, blogPosts, blogTags] =
+    await Promise.all([
+      getPersonalInfo(),
+      getAbout(),
+      getResume(),
+      getCertifications(),
+      getProjects("project"),
+      getProjects("lab"),
+      getBlogPosts(6),
+      getBlogTags(),
+    ])
 
   return (
     <div className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-12">
@@ -23,7 +41,15 @@ export default async function Home() {
           </Suspense>
 
           <Suspense fallback={<MainContentSkeleton />}>
-            <MainContent />
+            <MainContent
+              aboutData={aboutData}
+              resumeData={resumeData}
+              certifications={certifications}
+              projects={projects}
+              labs={labs}
+              blogPosts={blogPosts}
+              blogTags={blogTags}
+            />
           </Suspense>
         </div>
       </div>

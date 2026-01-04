@@ -3,12 +3,29 @@
 import { useState } from "react"
 import { AboutSection } from "@/components/about-section"
 import { ResumeSection } from "@/components/resume-section"
-import { PortfolioWrapper } from "@/components/portfolio-wrapper"
+import { PortfolioSection } from "@/components/portfolio-section"
 import { BlogSection } from "@/components/blog-section"
 import { ContactSection } from "@/components/contact-section-new"
-import { Suspense } from "react"
 
-export function MainContent() {
+interface MainContentProps {
+  aboutData: any
+  resumeData: any
+  certifications: any
+  projects: any[]
+  labs: any[]
+  blogPosts: any[]
+  blogTags: string[]
+}
+
+export function MainContent({
+  aboutData,
+  resumeData,
+  certifications,
+  projects,
+  labs,
+  blogPosts,
+  blogTags,
+}: MainContentProps) {
   const [activeSection, setActiveSection] = useState("about")
 
   return (
@@ -31,43 +48,18 @@ export function MainContent() {
       </nav>
 
       <div className="p-4 sm:p-5 md:p-6 lg:p-8">
-        {activeSection === "about" && (
-          <Suspense fallback={<SectionSkeleton />}>
-            <AboutSection />
-          </Suspense>
-        )}
+        {activeSection === "about" && <AboutSection data={aboutData} />}
         {activeSection === "resume" && (
-          <Suspense fallback={<SectionSkeleton />}>
-            <ResumeSection />
-          </Suspense>
+          <ResumeSection data={resumeData} certifications={certifications} />
         )}
         {activeSection === "portfolio" && (
-          <Suspense fallback={<SectionSkeleton />}>
-            <PortfolioWrapper />
-          </Suspense>
+          <PortfolioSection projects={projects || []} labs={labs || []} />
         )}
         {activeSection === "blog" && (
-          <Suspense fallback={<SectionSkeleton />}>
-            <BlogSection />
-          </Suspense>
+          <BlogSection posts={blogPosts} tags={blogTags} />
         )}
         {activeSection === "contact" && <ContactSection />}
       </div>
     </main>
-  )
-}
-
-function SectionSkeleton() {
-  return (
-    <div className="space-y-6 animate-pulse">
-      <div className="h-8 w-48 bg-secondary rounded" />
-      <div className="h-4 w-full bg-secondary rounded" />
-      <div className="h-4 w-3/4 bg-secondary rounded" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-64 bg-secondary rounded-xl" />
-        ))}
-      </div>
-    </div>
   )
 }

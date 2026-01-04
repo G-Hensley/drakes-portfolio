@@ -1,11 +1,14 @@
 import { Calendar, Clock } from "lucide-react"
-import { getBlogPosts, getBlogTags } from "@/lib/sanity.queries"
 import { urlForImage } from "@/lib/sanity.client"
 import { BlogSubscribe } from "@/components/blog-subscribe"
 import Link from "next/link"
 
-export async function BlogSection() {
-  const [posts, tags] = await Promise.all([getBlogPosts(6), getBlogTags()])
+interface BlogSectionProps {
+  posts: any[]
+  tags: string[]
+}
+
+export function BlogSection({ posts, tags }: BlogSectionProps) {
 
   if (!posts || posts.length === 0) {
     return (

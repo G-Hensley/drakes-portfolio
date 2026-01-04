@@ -1,11 +1,13 @@
 import { BookOpen, Briefcase, Award } from "lucide-react"
-import { getResume, getCertifications } from "@/lib/sanity.queries"
 import { PortableText } from "@/components/portable-text"
 import { urlForImage } from "@/lib/sanity.client"
 
-export async function ResumeSection() {
-  const [resumeData, certifications] = await Promise.all([getResume(), getCertifications()])
+interface ResumeSectionProps {
+  data: any
+  certifications: any[]
+}
 
+export function ResumeSection({ data: resumeData, certifications }: ResumeSectionProps) {
   if (!resumeData) {
     return (
       <div className="text-center text-muted-foreground py-12">
