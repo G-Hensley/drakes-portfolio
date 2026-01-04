@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { ProfileSection, ThemeToggle, PageContent } from "@/components/layout"
+import { ThemeToggle, PageContent } from "@/components/layout"
 import {
   getPersonalInfo,
   getAbout,
@@ -27,17 +27,16 @@ export default async function Home() {
     ])
 
   return (
-    <div className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-12">
-      <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50">
+    <div className="min-h-screen px-4 py-2 md:px-6">
+      <div className="fixed top-2.25 right-4 z-50">
         <ThemeToggle />
       </div>
 
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center">
-          <ProfileSection data={personalInfo} />
-
           <Suspense fallback={<MainContentSkeleton />}>
             <PageContent
+              personalInfo={personalInfo}
               aboutData={aboutData}
               resumeData={resumeData}
               certifications={certifications}

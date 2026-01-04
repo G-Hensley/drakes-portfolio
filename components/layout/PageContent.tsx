@@ -3,8 +3,11 @@
 import { useState } from "react"
 import { Nav } from "@/components/layout/Nav"
 import { MainContent } from "@/components/layout/main-content"
+import { ProfileSection } from "@/components/layout/profile-section"
+import type { PersonalInfo } from "@/lib/sanity.types"
 
 interface PageContentProps {
+  personalInfo: PersonalInfo | null
   aboutData: any
   resumeData: any
   certifications: any
@@ -15,6 +18,7 @@ interface PageContentProps {
 }
 
 export function PageContent({
+  personalInfo,
   aboutData,
   resumeData,
   certifications,
@@ -29,6 +33,7 @@ export function PageContent({
     <>
       <Nav activeSection={activeSection} onSectionChange={setActiveSection} />
       <MainContent
+        profileInfo={personalInfo}
         activeSection={activeSection}
         aboutData={aboutData}
         resumeData={resumeData}

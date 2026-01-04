@@ -9,7 +9,7 @@ interface ProfileSectionProps {
 export function ProfileSection({ data }: ProfileSectionProps) {
   if (!data) {
     return (
-      <section className="w-full lg:w-80 bg-card rounded-2xl border border-border p-4 md:p-6 lg:sticky lg:top-8 h-fit">
+      <section className="w-full sm:w-md bg-card rounded-2xl border border-border p-4 md:p-6 lg:sticky lg:top-8 h-fit">
         <div className="text-center text-muted-foreground">Loading profile...</div>
       </section>
     )
@@ -22,7 +22,7 @@ export function ProfileSection({ data }: ProfileSectionProps) {
   }
 
   return (
-    <section className="w-full md:w-md bg-card rounded-2xl border border-border p-4 md:py-6 px-8 relative h-fit">
+    <section className="w-full sm:w-md bg-card rounded-2xl border border-border p-4 md:py-6 px-8 relative h-fit mt-18">
       {/* Profile Image */}
       <div className="flex flex-col items-center">
         <div className="relative w-24 h-24 md:w-32 md:h-32 mb-4 md:mb-6">

@@ -9,7 +9,7 @@ const sections = ["about", "resume", "portfolio", "blog", "contact"]
 
 export function Nav({ activeSection, onSectionChange }: NavProps) {
   return (
-    <nav className="flex gap-1 sm:gap-2 md:gap-4 p-3 sm:p-4 md:p-6 bg-card rounded-xl md:rounded-2xl border border-border overflow-x-auto scrollbar-hide">
+    <nav className="flex gap-1 sm:gap-2 md:gap-4 p-2 bg-card rounded-xl md:rounded-2xl border border-border overflow-x-auto scrollbar-hide fixed z-50">
       {sections.map((section) => (
         <button
           key={section}
