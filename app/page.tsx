@@ -11,7 +11,7 @@ export default async function Home() {
   const personalInfo = await getPersonalInfo()
 
   return (
-    <div className="min-h-screen bg-background p-3 sm:p-4 md:p-6 lg:p-12">
+    <div className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-12">
       <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50">
         <ThemeToggle />
       </div>
