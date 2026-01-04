@@ -2,16 +2,16 @@ import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react"
 import { urlForImage } from "@/lib/sanity.client"
 import type { PersonalInfo } from "@/lib/sanity.types"
 
-interface ProfileSidebarProps {
+interface ProfileSectionProps {
   data: PersonalInfo | null
 }
 
-export function ProfileSidebar({ data }: ProfileSidebarProps) {
+export function ProfileSection({ data }: ProfileSectionProps) {
   if (!data) {
     return (
-      <aside className="w-full lg:w-80 bg-card rounded-2xl border border-border p-4 md:p-6 lg:sticky lg:top-8 h-fit">
+      <section className="w-full lg:w-80 bg-card rounded-2xl border border-border p-4 md:p-6 lg:sticky lg:top-8 h-fit">
         <div className="text-center text-muted-foreground">Loading profile...</div>
-      </aside>
+      </section>
     )
   }
 
@@ -22,12 +22,12 @@ export function ProfileSidebar({ data }: ProfileSidebarProps) {
   }
 
   return (
-    <aside className="w-full lg:w-80 bg-card rounded-2xl border border-border p-4 md:p-6 lg:sticky lg:top-8 h-fit">
+    <section className="w-full md:w-md bg-card rounded-2xl border border-border p-4 md:py-6 px-8 relative h-fit">
       {/* Profile Image */}
       <div className="flex flex-col items-center">
         <div className="relative w-24 h-24 md:w-32 md:h-32 mb-4 md:mb-6">
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent/20 via-accent/5 to-transparent animate-pulse-slow" />
-          <div className="absolute inset-[2px] rounded-3xl bg-secondary overflow-hidden">
+          <div className="absolute inset-0 rounded-full bg-linear-to-br from-accent/20 via-accent/5 to-transparent animate-pulse-slow" />
+          <div className="absolute inset-0.5 rounded-full bg-secondary overflow-hidden border border-border">
             {data.avatar ? (
               <img
                 src={urlForImage(data.avatar).width(200).height(200).url() || "/placeholder.svg"}
@@ -52,10 +52,10 @@ export function ProfileSidebar({ data }: ProfileSidebarProps) {
       <div className="h-px bg-border my-4 md:my-6" />
 
       {/* Contact Info */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 md:gap-4">
+      <div className="flex flex-col gap-3 md:gap-4">
         {data.email && (
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
               <Mail className="w-5 h-5 text-accent" />
             </div>
             <div className="flex-1 min-w-0">
@@ -72,7 +72,7 @@ export function ProfileSidebar({ data }: ProfileSidebarProps) {
 
         {data.phone && (
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
               <Phone className="w-5 h-5 text-accent" />
             </div>
             <div className="flex-1">
@@ -89,7 +89,7 @@ export function ProfileSidebar({ data }: ProfileSidebarProps) {
 
         {data.location && (
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
               <MapPin className="w-5 h-5 text-accent" />
             </div>
             <div className="flex-1">
@@ -122,6 +122,6 @@ export function ProfileSidebar({ data }: ProfileSidebarProps) {
           })}
         </div>
       )}
-    </aside>
+    </section>
   )
 }

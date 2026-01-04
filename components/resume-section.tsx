@@ -7,6 +7,30 @@ interface ResumeSectionProps {
   certifications: any[]
 }
 
+interface Skill {
+  category: string
+  items: string[]
+}
+
+interface EducationItem {
+  degree: string
+  institution: string
+  location?: string
+  startDate: string
+  endDate?: string
+  description?: string
+}
+
+interface ExperienceItem {
+  title: string
+  company: string
+  location?: string
+  startDate: string
+  endDate?: string
+  current?: boolean
+  description?: any
+}
+
 export function ResumeSection({ data: resumeData, certifications }: ResumeSectionProps) {
   if (!resumeData) {
     return (
@@ -31,9 +55,9 @@ export function ResumeSection({ data: resumeData, certifications }: ResumeSectio
             <h3 className="text-xl md:text-2xl font-bold text-foreground">Education</h3>
           </div>
           <div className="space-y-4">
-            {resumeData.education.map((item, index) => (
+            {resumeData.education.map((item: EducationItem, index: number) => (
               <div key={index} className="relative pl-5 md:pl-6 pb-6 border-l-2 border-border last:pb-0">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent" />
+                <div className="absolute -left-2.25 top-0 w-4 h-4 rounded-full bg-accent" />
                 <h4 className="text-base md:text-lg font-semibold text-foreground mb-2">{item.degree}</h4>
                 <p className="text-sm text-accent mb-2">
                   {item.institution}
@@ -63,9 +87,9 @@ export function ResumeSection({ data: resumeData, certifications }: ResumeSectio
             <h3 className="text-xl md:text-2xl font-bold text-foreground">Experience</h3>
           </div>
           <div className="space-y-4">
-            {resumeData.experience.map((item, index) => (
+            {resumeData.experience.map((item: ExperienceItem, index: number) => (
               <div key={index} className="relative pl-5 md:pl-6 pb-6 border-l-2 border-border last:pb-0">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent" />
+                <div className="absolute -left-2.25 top-0 w-4 h-4 rounded-full bg-accent" />
                 <h4 className="text-base md:text-lg font-semibold text-foreground mb-2">{item.title}</h4>
                 <p className="text-sm text-accent mb-2">
                   {item.company}
@@ -106,7 +130,7 @@ export function ResumeSection({ data: resumeData, certifications }: ResumeSectio
               >
                 <div className="flex items-start gap-3">
                   {cert.logo && (
-                    <div className="w-12 h-12 flex-shrink-0 bg-background rounded-lg overflow-hidden flex items-center justify-center">
+                    <div className="w-12 h-12 shrink-0 bg-background rounded-lg overflow-hidden flex items-center justify-center">
                       <img
                         src={urlForImage(cert.logo).width(48).height(48).url() || "/placeholder.svg"}
                         alt={cert.issuer}
@@ -143,11 +167,11 @@ export function ResumeSection({ data: resumeData, certifications }: ResumeSectio
         <div>
           <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Skills</h3>
           <div className="space-y-6">
-            {resumeData.skills.map((skillCategory, index) => (
+            {(resumeData.skills as Skill[]).map((skillCategory, index) => (
               <div key={index}>
                 <h4 className="text-lg font-semibold text-foreground mb-3">{skillCategory.category}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {skillCategory.items.map((skill, skillIndex) => (
+                  {skillCategory.items.map((skill: string, skillIndex: number) => (
                     <span
                       key={skillIndex}
                       className="px-3 py-1.5 bg-accent/10 text-accent text-sm rounded-lg border border-accent/20"

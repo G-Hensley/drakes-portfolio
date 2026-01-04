@@ -1,7 +1,5 @@
 import { Suspense } from "react"
-import { ProfileSidebar } from "@/components/profile-sidebar"
-import { MainContent } from "@/components/main-content"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ProfileSection, ThemeToggle, PageContent } from "@/components/layout"
 import {
   getPersonalInfo,
   getAbout,
@@ -35,13 +33,11 @@ export default async function Home() {
       </div>
 
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 md:gap-6">
-          <Suspense fallback={<ProfileSidebarSkeleton />}>
-            <ProfileSidebar data={personalInfo} />
-          </Suspense>
+        <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center">
+          <ProfileSection data={personalInfo} />
 
           <Suspense fallback={<MainContentSkeleton />}>
-            <MainContent
+            <PageContent
               aboutData={aboutData}
               resumeData={resumeData}
               certifications={certifications}
@@ -54,18 +50,6 @@ export default async function Home() {
         </div>
       </div>
     </div>
-  )
-}
-
-function ProfileSidebarSkeleton() {
-  return (
-    <aside className="w-full lg:w-80 bg-card rounded-2xl border border-border p-4 md:p-6 h-fit animate-pulse">
-      <div className="flex flex-col items-center">
-        <div className="w-24 h-24 md:w-32 md:h-32 mb-4 md:mb-6 bg-secondary rounded-3xl" />
-        <div className="h-6 w-32 bg-secondary rounded mb-2" />
-        <div className="h-4 w-24 bg-secondary rounded" />
-      </div>
-    </aside>
   )
 }
 

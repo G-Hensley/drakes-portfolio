@@ -32,11 +32,6 @@ export default defineType({
       validation: (Rule) => Rule.email(),
     }),
     defineField({
-      name: "phone",
-      title: "Phone",
-      type: "string",
-    }),
-    defineField({
       name: "location",
       title: "Location",
       type: "string",
@@ -57,7 +52,7 @@ export default defineType({
                 list: [
                   { title: "GitHub", value: "github" },
                   { title: "LinkedIn", value: "linkedin" },
-                  { title: "Twitter", value: "twitter" },
+                  { title: "X", value: "x" },
                   { title: "Portfolio", value: "portfolio" },
                 ],
               },

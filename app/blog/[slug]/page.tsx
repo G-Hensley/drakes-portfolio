@@ -3,7 +3,7 @@ import { getBlogPostBySlug, getBlogPosts } from "@/lib/sanity.queries"
 import { urlForImage } from "@/lib/sanity.client"
 import { PortableText } from "@/components/portable-text"
 import { BlogSubscribe } from "@/components/blog-subscribe"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "@/components/layout"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
