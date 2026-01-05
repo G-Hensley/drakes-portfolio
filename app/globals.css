@@ -48,6 +48,32 @@
   --sidebar-ring: #00b8e6;
 
   --radius: 0.75rem;
+
+  /* Dot Matrix Colors - Light Mode */
+  --dot-color-cyan: rgba(0, 184, 230, 0.6);
+  --dot-color-cyan-dim: rgba(0, 184, 230, 0.35);
+  --dot-color-magenta: rgba(166, 2, 236, 0.5);
+  --dot-color-magenta-dim: rgba(166, 2, 236, 0.3);
+
+  /* Glassmorphism Variables */
+  --glass-blur: 2px;
+  --glass-blur-heavy: 4px;
+  --glass-blur-light: 1px;
+
+  --glass-opacity: 0.7;
+  --glass-opacity-heavy: 0.85;
+  --glass-opacity-light: 0.5;
+
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  --glass-shadow-hover: 0 12px 48px 0 rgba(0, 0, 0, 0.12);
+
+  /* Gradient overlays for depth */
+  --glass-gradient-overlay: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
 }
 
 .dark {
@@ -93,6 +119,23 @@
   --sidebar-accent-foreground: #e0e7ff;
   --sidebar-border: #2d2d44;
   --sidebar-ring: #00d9ff;
+
+  /* Dot Matrix Colors - Dark Mode (brighter for visibility) */
+  --dot-color-cyan: rgba(0, 217, 255, 0.7);
+  --dot-color-cyan-dim: rgba(0, 217, 255, 0.4);
+  --dot-color-magenta: rgba(166, 2, 236, 0.6);
+  --dot-color-magenta-dim: rgba(166, 2, 236, 0.35);
+
+  /* Dark mode glass adjustments */
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --glass-shadow-hover: 0 12px 48px 0 rgba(0, 0, 0, 0.6);
+
+  --glass-gradient-overlay: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
 }
 
 @theme inline {
@@ -146,6 +189,7 @@
   body {
     @apply bg-background text-foreground;
   }
+
 }
 
 /* Added scrollbar hiding utility for mobile navigation */
@@ -157,6 +201,91 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Glassmorphism Effects */
+  .glass {
+    background: rgba(255, 255, 255, var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .dark .glass {
+    background: rgba(26, 26, 46, var(--glass-opacity));
+  }
+
+  .glass-heavy {
+    background: rgba(255, 255, 255, var(--glass-opacity-heavy));
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .dark .glass-heavy {
+    background: rgba(26, 26, 46, var(--glass-opacity-heavy));
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, var(--glass-opacity-light));
+    backdrop-filter: blur(var(--glass-blur-light));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .dark .glass-light {
+    background: rgba(26, 26, 46, var(--glass-opacity-light));
+  }
+
+  /* Glass with gradient overlay */
+  .glass-gradient {
+    position: relative;
+  }
+
+  .glass-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--glass-gradient-overlay);
+    pointer-events: none;
+  }
+
+  /* Glass hover effects */
+  .glass-hover:hover {
+    box-shadow: var(--glass-shadow-hover);
+    border-color: rgba(0, 217, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .dark .glass-hover:hover {
+    border-color: rgba(0, 217, 255, 0.4);
+  }
+
+  /* Frosted glass for navigation */
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--glass-border);
+  }
+
+  .dark .glass-nav {
+    background: rgba(26, 26, 46, 0.7);
+  }
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(12px)) {
+  .glass,
+  .glass-heavy,
+  .glass-light {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .dark .glass,
+  .dark .glass-heavy,
+  .dark .glass-light {
+    background: rgba(26, 26, 46, 0.95);
   }
 }
 
@@ -211,3 +340,4 @@
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+

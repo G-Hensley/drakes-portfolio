@@ -45,7 +45,7 @@ export function PageContent({
         </section>
 
         {/* Resume Section - includes skills/technologies */}
-        <section id="resume" className="bg-card rounded-xl md:rounded-2xl border border-border p-4 sm:p-5 md:p-6 lg:p-8">
+        <section id="resume" className="glass glass-hover rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8">
           <ResumeSection
             data={resumeData}
             certifications={certifications}
@@ -55,7 +55,7 @@ export function PageContent({
         </section>
 
         {/* Portfolio Preview - limited to 3 */}
-        <section id="portfolio" className="bg-card rounded-xl md:rounded-2xl border border-border p-4 sm:p-5 md:p-6 lg:p-8">
+        <section id="portfolio" className="glass glass-hover rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8">
           <PortfolioSection
             projects={projects || []}
             labs={labs || []}
@@ -65,7 +65,7 @@ export function PageContent({
         </section>
 
         {/* Blog Preview - limited to 3 */}
-        <section id="blog" className="bg-card rounded-xl md:rounded-2xl border border-border p-4 sm:p-5 md:p-6 lg:p-8">
+        <section id="blog" className="glass glass-hover rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8">
           <BlogSection
             posts={blogPosts.slice(0, 3)}
             tags={blogTags}
@@ -73,7 +73,7 @@ export function PageContent({
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="bg-card rounded-xl md:rounded-2xl border border-border p-4 sm:p-5 md:p-6 lg:p-8">
+        <section id="contact" className="glass glass-hover rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8">
           <ContactSection />
         </section>
       </main>
