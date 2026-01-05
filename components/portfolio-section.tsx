@@ -76,7 +76,7 @@ export function PortfolioSection({ projects, labs, limit, showViewAll = false }:
               className="group relative bg-secondary rounded-xl md:rounded-2xl border border-border overflow-hidden hover:border-accent transition-all duration-300 hover:shadow-xl hover:shadow-accent/10"
             >
               {project.image && (
-                <div className="aspect-[4/3] overflow-hidden bg-background">
+                <div className="aspect-4/3 overflow-hidden bg-background">
                   <img
                     src={urlForImage(project.image).width(600).height(450).url() || "/placeholder.svg"}
                     alt={project.title}
