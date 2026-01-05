@@ -8,12 +8,15 @@ import type { Project } from "@/lib/sanity.types"
 interface PortfolioSectionProps {
   projects: Project[]
   labs: Project[]
+  limit?: number
+  showViewAll?: boolean
 }
 
-export function PortfolioSection({ projects, labs }: PortfolioSectionProps) {
+export function PortfolioSection({ projects, labs, limit, showViewAll = false }: PortfolioSectionProps) {
   const [activeTab, setActiveTab] = useState<"projects" | "labs">("projects")
 
-  const displayedProjects = activeTab === "projects" ? projects : labs
+  const allProjects = activeTab === "projects" ? projects : labs
+  const displayedProjects = limit ? allProjects.slice(0, limit) : allProjects
 
   if (!projects || projects.length === 0) {
     return (
@@ -142,6 +145,18 @@ export function PortfolioSection({ projects, labs }: PortfolioSectionProps) {
               )}
             </div>
           ))}
+        </div>
+      )}
+
+      {/* View All Link */}
+      {showViewAll && (
+        <div className="text-center pt-4">
+          <a
+            href="/portfolio"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors font-medium"
+          >
+            View All Projects
+          </a>
         </div>
       )}
     </div>

@@ -16,7 +16,9 @@ interface AboutData {
 
 interface AboutSectionProps {
   data: AboutData | null
-  profileData: PersonalInfo | null
+  profileData?: PersonalInfo | null
+  showProfile?: boolean
+  showSkills?: boolean
 }
 
 const socialIconMap = {
@@ -25,7 +27,7 @@ const socialIconMap = {
   twitter: Twitter,
 }
 
-export function AboutSection({ data, profileData }: AboutSectionProps) {
+export function AboutSection({ data, profileData, showProfile = true, showSkills = true }: AboutSectionProps) {
 
   if (!data) {
     return (
@@ -38,7 +40,7 @@ export function AboutSection({ data, profileData }: AboutSectionProps) {
   return (
     <div className="flex flex-col gap-4 md:gap-6 items-center">
       {/* Profile Card */}
-      {profileData && (
+      {showProfile && profileData && (
         <section className="w-full sm:w-md bg-secondary/50 rounded-2xl border border-border p-4 md:py-6 md:px-8">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             {/* Profile Image */}
@@ -126,7 +128,7 @@ export function AboutSection({ data, profileData }: AboutSectionProps) {
         </div>
 
         {/* Skills */}
-        {data.skills && data.skills.length > 0 && (
+        {showSkills && data.skills && data.skills.length > 0 && (
           <div>
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Skills</h3>
             <div className="flex flex-wrap gap-2">
@@ -143,7 +145,7 @@ export function AboutSection({ data, profileData }: AboutSectionProps) {
         )}
 
         {/* Technologies */}
-        {data.technologies && data.technologies.length > 0 && (
+        {showSkills && data.technologies && data.technologies.length > 0 && (
           <div>
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Technologies</h3>
             <div className="space-y-6">

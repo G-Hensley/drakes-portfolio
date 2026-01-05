@@ -2,9 +2,16 @@ import { BookOpen, Briefcase, Award } from "lucide-react"
 import { PortableText } from "@/components/portable-text"
 import { urlForImage } from "@/lib/sanity.client"
 
+interface TechnologyCategory {
+  category: string
+  items: string[]
+}
+
 interface ResumeSectionProps {
   data: any
   certifications: any[]
+  skills?: string[]
+  technologies?: TechnologyCategory[]
 }
 
 interface Skill {
@@ -31,7 +38,7 @@ interface ExperienceItem {
   description?: any
 }
 
-export function ResumeSection({ data: resumeData, certifications }: ResumeSectionProps) {
+export function ResumeSection({ data: resumeData, certifications, skills, technologies }: ResumeSectionProps) {
   if (!resumeData) {
     return (
       <div className="text-center text-muted-foreground py-12">
@@ -46,6 +53,47 @@ export function ResumeSection({ data: resumeData, certifications }: ResumeSectio
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Resume</h2>
         <div className="w-10 h-1 bg-accent rounded-full mb-6" />
       </div>
+
+      {/* Skills from About section */}
+      {skills && skills.length > 0 && (
+        <div>
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Skills</h3>
+          <div className="flex flex-wrap gap-2">
+            {skills.map((skill: string, index: number) => (
+              <span
+                key={index}
+                className="px-3 py-1.5 bg-secondary text-foreground text-sm rounded-lg border border-border hover:border-accent transition-colors"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Technologies from About section */}
+      {technologies && technologies.length > 0 && (
+        <div>
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6">Technologies</h3>
+          <div className="space-y-6">
+            {technologies.map((tech: TechnologyCategory, index: number) => (
+              <div key={index}>
+                <h4 className="text-lg font-semibold text-foreground mb-3">{tech.category}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {tech.items.map((item: string, itemIndex: number) => (
+                    <span
+                      key={itemIndex}
+                      className="px-3 py-1.5 bg-accent/10 text-accent text-sm rounded-lg border border-accent/20"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Education */}
       {resumeData.education && resumeData.education.length > 0 && (

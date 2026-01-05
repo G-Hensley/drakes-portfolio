@@ -1,5 +1,4 @@
 export { Nav } from "./Nav"
-export { MainContent } from "./main-content"
 export { PageContent } from "./PageContent"
 export { ProfileSection } from "./profile-section"
 export { ThemeToggle } from "./theme-toggle"
