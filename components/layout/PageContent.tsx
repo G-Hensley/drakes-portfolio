@@ -38,7 +38,6 @@ export function PageContent({
         <section id="about">
           <AboutSection
             data={aboutData}
-            profileData={personalInfo}
             showProfile={true}
             showSkills={false}
           />

@@ -5,6 +5,7 @@ export interface PersonalInfo {
   email?: string
   phone?: string
   location?: string
+  topSkills?: string[]
   socialLinks?: SocialLink[]
 }
 

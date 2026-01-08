@@ -9,6 +9,7 @@ import {
   getBlogPosts,
   getBlogTags,
 } from "@/lib/sanity.queries"
+import { HeroSection } from "@/components/hero-section"
 
 // Revalidate every hour
 export const revalidate = 3600
@@ -34,6 +35,7 @@ export default async function Home() {
 
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center">
+          <HeroSection personalInfo={personalInfo} />
           <Suspense fallback={<MainContentSkeleton />}>
             <PageContent
               personalInfo={personalInfo}

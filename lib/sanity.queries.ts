@@ -13,6 +13,7 @@ export const getPersonalInfo = cache(async () => {
     email,
     phone,
     location,
+    topSkills[],
     socialLinks[]{
       platform,
       url
