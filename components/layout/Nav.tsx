@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import type { PersonalInfo } from "@/lib/sanity.types"
 
 // Sections that scroll on the homepage
 const scrollSections = ["about", "resume", "blog", "contact"]
@@ -11,7 +12,7 @@ const pageLinks = [
   { name: "portfolio", href: "/portfolio" }
 ]
 
-export function Nav() {
+export function Nav({ personalInfo }: { personalInfo: PersonalInfo }) {
   const [activeSection, setActiveSection] = useState("about")
 
   useEffect(() => {
@@ -43,9 +44,19 @@ export function Nav() {
   }
 
   return (
-    <nav className="glass-nav flex gap-1 sm:gap-2 p-2 rounded-xl md:rounded-2xl overflow-x-auto scrollbar-hide fixed z-50">
+    <nav className="glass-nav glass-hover flex gap-8 px-4 py-2 rounded-xl md:rounded-2xl overflow-x-auto scrollbar-hide fixed z-50">
+      {/* Users name and job title */}
+      <div className="flex gap-1 items-center">
+        <div className="w-2 h-2" />
+        <div className="flex flex-col">
+          <span className="font-semibold text-sm">{personalInfo.name}</span>
+          <span className="text-xs text-muted-foreground">{personalInfo.title}</span>
+        </div>
+      </div>
+
       {/* Scroll sections */}
-      {scrollSections.slice(0, 2).map((section) => (
+      <div className="flex items-center gap-1">
+        {scrollSections.slice(0, 2).map((section) => (
         <a
           key={section}
           href={`#${section}`}
@@ -86,6 +97,7 @@ export function Nav() {
           {section}
         </a>
       ))}
+      </div>
     </nav>
   )
 }
