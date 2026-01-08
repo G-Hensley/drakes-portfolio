@@ -41,9 +41,6 @@ export default defineType({
       title: "Top Skills",
       type: "array",
       of: [{ type: "string" }],
-      options: {
-        layout: "tags",
-      },
     }),
     defineField({
       name: "socialLinks",
