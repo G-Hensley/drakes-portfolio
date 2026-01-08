@@ -56,11 +56,11 @@
   --dot-color-magenta-dim: rgba(166, 2, 236, 0.3);
 
   /* Glassmorphism Variables */
-  --glass-blur: 2px;
-  --glass-blur-heavy: 4px;
-  --glass-blur-light: 1px;
+  --glass-blur: 8px;
+  --glass-blur-heavy: 12px;
+  --glass-blur-light: 2px;
 
-  --glass-opacity: 0.7;
+  --glass-opacity: 0.2;
   --glass-opacity-heavy: 0.85;
   --glass-opacity-light: 0.5;
 
@@ -127,7 +127,7 @@
   --dot-color-magenta-dim: rgba(166, 2, 236, 0.35);
 
   /* Dark mode glass adjustments */
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(182, 182, 182, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
   --glass-shadow-hover: 0 12px 48px 0 rgba(0, 0, 0, 0.6);
 
@@ -264,8 +264,8 @@
 
   /* Frosted glass for navigation */
   .glass-nav {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%);
     border: 1px solid var(--glass-border);
   }
 
@@ -275,17 +275,17 @@
 }
 
 /* Fallback for browsers without backdrop-filter support */
-@supports not (backdrop-filter: blur(12px)) {
+@supports not (backdrop-filter: blur(1px)) {
   .glass,
   .glass-heavy,
   .glass-light {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .dark .glass,
   .dark .glass-heavy,
   .dark .glass-light {
-    background: rgba(26, 26, 46, 0.95);
+    background: rgba(26, 26, 46, 0.1);
   }
 }
 
@@ -334,6 +334,25 @@
 .animate-marquee:hover,
 .animate-marquee-slow:hover {
   animation-play-state: paused;
+}
+
+.blob-animation {
+  animation: blob 8s infinite;
+}
+
+@keyframes blob {
+  0% {
+      transform: translate(0px, 0px);
+    }
+    33% {
+      transform: translate(30px, -50px);
+    }
+    66% {
+      transform: translate(-20px, 20px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
 }
 
 /* Added smooth theme transition */

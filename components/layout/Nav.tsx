@@ -43,7 +43,7 @@ export function Nav() {
   }
 
   return (
-    <nav className="glass-nav flex gap-1 sm:gap-2 md:gap-4 p-2 rounded-xl md:rounded-2xl overflow-x-auto scrollbar-hide fixed z-50">
+    <nav className="glass-nav flex gap-1 sm:gap-2 p-2 rounded-xl md:rounded-2xl overflow-x-auto scrollbar-hide fixed z-50">
       {/* Scroll sections */}
       {scrollSections.slice(0, 2).map((section) => (
         <a

@@ -41,7 +41,7 @@ export function AboutSection({ data, profileData, showProfile = true, showSkills
     <div className="flex flex-col gap-4 md:gap-6 items-center mt-2">
       {/* Profile Card */}
       {showProfile && profileData && (
-        <section className="w-full sm:w-md glass-heavy rounded-2xl p-4 md:py-6 md:px-8">
+        <section className="w-full sm:w-md glass glass-hover rounded-2xl p-4 md:py-6 md:px-8">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             {/* Profile Image */}
             <div className="relative w-24 h-24 md:w-32 md:h-32 shrink-0">
@@ -117,7 +117,7 @@ export function AboutSection({ data, profileData, showProfile = true, showSkills
       )}
 
       {/* About Card */}
-      <section className="w-full glass rounded-2xl p-4 md:py-6 md:px-8 space-y-8 md:space-y-10">
+      <section className="w-full glass glass-hover rounded-2xl p-4 md:py-6 md:px-8 space-y-8 md:space-y-10">
         {/* About Me */}
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">About Me</h2>
